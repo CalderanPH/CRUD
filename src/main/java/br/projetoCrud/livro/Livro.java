@@ -1,6 +1,7 @@
 package br.projetoCrud.livro;
 
 import br.projetoCrud.autor.Autor;
+import br.projetoCrud.entity.LivroEntidade;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,8 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class Livro {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Getter @Setter
     private Long id;
 
@@ -36,13 +36,7 @@ public class Livro {
             this.autor = autor;
     }
 
-    public LivroEntidade clonar(){
-        var livroEntidade = new LivroEntidade();
 
-        livroEntidade.setNome(this.getNome());
-
-        return livroEntidade;
-    }
 
 
 }

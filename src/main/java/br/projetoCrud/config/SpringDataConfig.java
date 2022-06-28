@@ -1,4 +1,4 @@
-package br.projetoCrud.Config;
+package br.projetoCrud.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ public class SpringDataConfig {
 
         ds.setUser("root");
         ds.setPassword("3441");
-        ds.setJdbcUrl("jdbc:mariadb://127.0.0.1:3306/projetoCrud");
+        ds.setJdbcUrl("jdbc:mariadb://127.0.0.1:3306/mariadb-GFNE");
         ds.setDriverClass("org.mariadb.jdbc.Driver");
         return ds;
     }
@@ -43,7 +43,7 @@ public class SpringDataConfig {
 
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.atividade_05.entity");
+        factory.setPackagesToScan("br.projetoCrud.config.entity");
         factory.afterPropertiesSet();
 
         return factory.getObject();
