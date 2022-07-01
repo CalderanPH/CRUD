@@ -25,8 +25,8 @@ public class SpringDataConfig {
 
         ds.setUser("root");
         ds.setPassword("3441");
-        ds.setJdbcUrl("jdbc:mariadb://127.0.0.1:3306/mariadb-GFNE");
-        ds.setDriverClass("org.mariadb.jdbc.Driver");
+        ds.setJdbcUrl("jdbc:mysql://localhost:3306/db2?createDatabaseIfNotExist=true");
+        ds.setDriverClass("com.mysql.cj.jdbc.Driver");
         return ds;
     }
 
@@ -38,12 +38,12 @@ public class SpringDataConfig {
 
         HibernateJpaVendorAdapter vendorAdapter =
                 new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(false);
+        vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
 
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("br.projetoCrud.config.entity");
+        factory.setPackagesToScan("br.projetoCrud.entity");
         factory.afterPropertiesSet();
 
         return factory.getObject();

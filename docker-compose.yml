@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  db:
+    image: mysql
+    container_name: projetocrud
+    environment:
+      MYSQL_ROOT_PASSWORD: 3441
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql/db2
+
+volumes:
+  db:
