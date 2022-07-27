@@ -1,4 +1,4 @@
-package br.projetoCrud.config;
+package br.paulocalderan.projetocrud.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories("br.projetoCrud.repository")
+@EnableJpaRepositories("br.paulocalderan.projetocrud.repository")
 @EnableTransactionManagement
 public class SpringDataConfig {
     @Bean
@@ -43,7 +43,7 @@ public class SpringDataConfig {
 
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("br.projetoCrud.entity");
+        factory.setPackagesToScan("br.paulocalderan.projetocrud.entity");
         factory.afterPropertiesSet();
 
         return factory.getObject();
