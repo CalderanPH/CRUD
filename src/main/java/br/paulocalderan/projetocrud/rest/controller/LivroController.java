@@ -2,7 +2,6 @@ package br.paulocalderan.projetocrud.rest.controller;
 
 
 import br.paulocalderan.projetocrud.entity.Livro;
-import br.paulocalderan.projetocrud.repository.LivroRepository;
 import br.paulocalderan.projetocrud.rest.controller.dto.LivroDTO;
 import br.paulocalderan.projetocrud.service.LivroService;
 import org.springframework.http.HttpStatus;
@@ -22,14 +21,14 @@ public class LivroController {
         this.service = service;
     }
 
-//    @GetMapping("{id}")
-//    public Livro getById(@PathVariable Long id) {
-//        return livroRepository
-//                .findById(id)
-//                .orElseThrow(() ->
-//                        new ResponseStatusException(HttpStatus.NOT_FOUND,
-//                                "Livro não encontrado."));
-//    }
+    @GetMapping("{id}")
+    public Livro getById(@PathVariable Long id) {
+        return service
+                .obterLivroCompleto(id)
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                "Livro não encontrado"));
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,31 +37,16 @@ public class LivroController {
         return livro.getId();
     }
 
-//    @PutMapping("{id}")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Livro update(@PathVariable Long id,
-//                        @RequestBody @Valid Livro livro) {
-//        return livroRepository
-//                .findById(id)
-//                .map(livroExist -> {
-//                    livro.setId(livroExist.getId());
-//                    livroRepository.save(livro);
-//                    return livro;
-//                }).orElseThrow(() ->
-//                        new ResponseStatusException(HttpStatus.NOT_FOUND,
-//                                "Livro não encontrado."));
-//    }
-//
-//
-//    @DeleteMapping
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public void delete(@PathVariable Long id) {
-//        livroRepository.findById(id)
-//                .map(livroExist -> {
-//                    livroRepository.delete(livroExist);
-//                    return livroExist;
-//                }).orElseThrow(() ->
-//                        new ResponseStatusException(HttpStatus.NOT_FOUND,
-//                                "Livro não encontrado."));
-//    }
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void update(@PathVariable Long id, @RequestBody @Valid LivroDTO dto) {
+        service.update(id, dto);
+    }
+
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
 }
