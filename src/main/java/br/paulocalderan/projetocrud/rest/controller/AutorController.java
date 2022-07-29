@@ -35,7 +35,7 @@ public class AutorController {
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Autor update(@PathVariable Long id,
                         @RequestBody @Valid Autor autor) {
         return autorRepository

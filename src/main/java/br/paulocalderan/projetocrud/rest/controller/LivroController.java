@@ -38,7 +38,7 @@ public class LivroController {
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Long id, @RequestBody @Valid LivroDTO dto) {
         service.update(id, dto);
     }

@@ -34,7 +34,7 @@ public class EditoraController {
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Editora update(@PathVariable Long id,
                           @RequestBody @Valid Editora editora) {
         return editoraRepository
