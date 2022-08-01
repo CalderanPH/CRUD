@@ -3,15 +3,13 @@ package br.paulocalderan.projetocrud.service;
 import br.paulocalderan.projetocrud.entity.Autor;
 import br.paulocalderan.projetocrud.entity.Editora;
 import br.paulocalderan.projetocrud.entity.Livro;
-import br.paulocalderan.projetocrud.exception.RegraNegocioException;
+import br.paulocalderan.projetocrud.exception.ApiException;
 import br.paulocalderan.projetocrud.repository.AutorRepository;
 import br.paulocalderan.projetocrud.repository.EditoraRepository;
 import br.paulocalderan.projetocrud.repository.LivroRepository;
 import br.paulocalderan.projetocrud.rest.controller.dto.LivroDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -29,9 +27,9 @@ public class LivroServiceImpl implements LivroService {
         Integer idAutor = dto.getAutor();
         Integer idEditora = dto.getEditora();
         Autor autor = autorRepository.findById(Long.valueOf(idAutor))
-                .orElseThrow(() -> new RegraNegocioException("Código de autor inválido."));
+                .orElseThrow(() -> new ApiException("Código de autor inválido."));
         Editora editora = editoraRepository.findById(Long.valueOf(idEditora))
-                .orElseThrow(() -> new RegraNegocioException("Código de editora inválido."));
+                .orElseThrow(() -> new ApiException("Código de editora inválido."));
 
         Livro livro = new Livro();
         livro.setAutor(autor);
@@ -54,7 +52,7 @@ public class LivroServiceImpl implements LivroService {
                     livro.setGenero(livroDTO.getGenero());
                     livro.setQtdPaginas(livroDTO.getQtdPaginas());
                     return livroRepository.save(livro);
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                }).orElseThrow(() -> new ApiException(
                         "Livro não encontrado."));
     }
 
@@ -66,7 +64,7 @@ public class LivroServiceImpl implements LivroService {
                 .map(livro -> {
                     livroRepository.delete(livro);
                     return livro;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                }).orElseThrow(() -> new ApiException(
                         "Livro não encontrado."));
     }
 

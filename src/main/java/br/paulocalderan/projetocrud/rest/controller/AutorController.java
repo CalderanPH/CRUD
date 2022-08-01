@@ -2,47 +2,44 @@ package br.paulocalderan.projetocrud.rest.controller;
 
 
 import br.paulocalderan.projetocrud.entity.Autor;
-import br.paulocalderan.projetocrud.repository.AutorRepository;
+import br.paulocalderan.projetocrud.exception.ApiException;
+import br.paulocalderan.projetocrud.rest.controller.dto.AutorDTO;
+import br.paulocalderan.projetocrud.service.AutorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.io.PrintStream;
 import java.net.URI;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 
 @RestController
 @Slf4j
 @RequestMapping("/api/autores")
 public class AutorController {
-    private AutorRepository autorRepository;
+    private AutorService service;
 
-    public AutorController(AutorRepository autorRepository) {
-        this.autorRepository = autorRepository;
+    public AutorController(AutorService service) {
+        this.service = service;
     }
 
     @GetMapping("{id}")
     public Autor findById(@PathVariable Long id) {
         log.info("Autor autalizado com o id: {}", id);
-        return autorRepository
-                .findById(id)
-                .orElseThrow(() ->
-                        new ResponseStatusException(NOT_FOUND,
-                                "Autor não encontrado."));
+        return service
+                .obterAutor(id)
+                .orElseThrow(() -> new ApiException("Autor não encontrado"));
     }
 
     @PostMapping
-    @ResponseStatus(CREATED)
-    public ResponseEntity<Autor> save(@Valid @RequestBody Autor autor) {
-        Autor autorCriado = autorRepository.save(autor);
+    public ResponseEntity<Autor> save(@Valid @RequestBody AutorDTO dto) {
+        Autor autorCriado = service.salvar(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("{id}")
-                .buildAndExpand(autor.getId())
+                .buildAndExpand(autorCriado.getId())
                 .toUri();
         log.info("Criado novo autor com id: {}", autorCriado.getId());
         return ResponseEntity.created(location).build();
@@ -51,30 +48,15 @@ public class AutorController {
     @PutMapping("{id}")
     @ResponseStatus(NO_CONTENT)
     public void update(@PathVariable Long id,
-                        @RequestBody @Valid Autor autor) {
-         autorRepository
-                .findById(id)
-                .map(autorExist -> {
-                    autor.setId(autorExist.getId());
-                    autorRepository.save(autor);
-                    return autor;
-                }).orElseThrow(() ->
-                        new ResponseStatusException(NOT_FOUND,
-                                "Autor não encontrado."));
+                       @RequestBody @Valid AutorDTO dto) {
+        service.update(id, dto);
         log.info("Autor autalizado com o id: {}", id);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        autorRepository
-                .findById(id)
-                .map(autorExist -> {
-                    autorRepository.delete(autorExist);
-                    return autorExist;
-                }).orElseThrow(() ->
-                        new ResponseStatusException(NOT_FOUND,
-                                "Autor não encontrado"));
+        service.delete(id);
         log.info("Autor deletado com o id: {}", id);
     }
 }

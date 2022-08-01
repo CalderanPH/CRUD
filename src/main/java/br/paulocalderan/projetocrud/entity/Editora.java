@@ -18,7 +18,6 @@ public class Editora {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
     @NotEmpty(message = "Campo nome não pode estar vazio.")
     private String name;
 

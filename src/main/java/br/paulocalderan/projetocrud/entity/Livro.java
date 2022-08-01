@@ -28,14 +28,12 @@ public class Livro {
     @JoinColumn(name = "editora_id")
     private Editora editora;
 
-    @Column
     @NotEmpty(message = "Campo nome não pode estar vazio.")
     private String name;
 
-    @Column
+    @NotEmpty(message = "Campo genero não pode estar vazio.")
     private String genero;
 
-    @Column
     private Integer qtdPaginas;
 
 }

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 
@@ -19,10 +18,8 @@ import java.util.Set;
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private Long id;
 
-    @Column
     @NotEmpty(message = "Campo nome não pode estar vazio.")
     private String name;
 

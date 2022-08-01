@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.rest;
+package br.paulocalderan.projetocrud.exception;
 
 import lombok.Getter;
 

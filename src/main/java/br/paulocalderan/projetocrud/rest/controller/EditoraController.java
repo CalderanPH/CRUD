@@ -1,20 +1,18 @@
 package br.paulocalderan.projetocrud.rest.controller;
 
 
-import br.paulocalderan.projetocrud.entity.Autor;
 import br.paulocalderan.projetocrud.entity.Editora;
+import br.paulocalderan.projetocrud.exception.ApiException;
 import br.paulocalderan.projetocrud.repository.EditoraRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 
 @RestController
@@ -32,12 +30,10 @@ public class EditoraController {
         return editoraRepository
                 .findById(id)
                 .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND,
-                                "Editora não encontrado."));
+                        new ApiException("ID inválido, tente novamente."));
     }
 
     @PostMapping
-    @ResponseStatus(CREATED)
     public ResponseEntity<Editora> save(@RequestBody @Valid Editora editora) {
         Editora editoraCriado = editoraRepository.save(editora);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -51,7 +47,7 @@ public class EditoraController {
     @PutMapping("{id}")
     @ResponseStatus(NO_CONTENT)
     public void update(@PathVariable Long id,
-                          @RequestBody @Valid Editora editora) {
+                       @RequestBody @Valid Editora editora) {
         editoraRepository
                 .findById(id)
                 .map(editoraExist -> {
@@ -59,22 +55,21 @@ public class EditoraController {
                     editoraRepository.save(editora);
                     return editora;
                 }).orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND,
-                                "Editora não encontrado."));
+                        new ApiException("Editora não alterado."));
         log.info("Editora autalizado com o id: {}", id);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) throws ApiException {
         editoraRepository
                 .findById(id)
                 .map(editoraExist -> {
                     editoraRepository.delete(editoraExist);
                     return editoraExist;
                 }).orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND,
-                                "Editora não encontrado"));
+                        new ApiException("Editora não encontrada."));
+        ;
         log.info("Editora deletado com o id: {}", id);
     }
 }
