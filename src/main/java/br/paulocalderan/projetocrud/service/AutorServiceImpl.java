@@ -3,11 +3,12 @@ package br.paulocalderan.projetocrud.service;
 import br.paulocalderan.projetocrud.entity.Autor;
 import br.paulocalderan.projetocrud.exception.ApiException;
 import br.paulocalderan.projetocrud.repository.AutorRepository;
-import br.paulocalderan.projetocrud.rest.controller.dto.AutorDTO;
+import br.paulocalderan.projetocrud.integracao.dto.AutorDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +51,10 @@ public class AutorServiceImpl implements AutorService {
     @Override
     public Optional<Autor> obterAutor(Long id) {
         return autorRepository.findById(id);
+    }
+
+    @Override
+    public List<Autor> findAll() {
+        return autorRepository.findAll();
     }
 }

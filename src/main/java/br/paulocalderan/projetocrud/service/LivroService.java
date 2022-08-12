@@ -1,7 +1,7 @@
 package br.paulocalderan.projetocrud.service;
 
 import br.paulocalderan.projetocrud.entity.Livro;
-import br.paulocalderan.projetocrud.rest.controller.dto.LivroDTO;
+import br.paulocalderan.projetocrud.integracao.dto.LivroDTO;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.rest.controller.dto;
+package br.paulocalderan.projetocrud.integracao.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

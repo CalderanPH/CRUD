@@ -1,9 +1,9 @@
-package br.paulocalderan.projetocrud.rest.controller;
+package br.paulocalderan.projetocrud.integracao;
 
 
 import br.paulocalderan.projetocrud.entity.Livro;
 import br.paulocalderan.projetocrud.exception.ApiException;
-import br.paulocalderan.projetocrud.rest.controller.dto.LivroDTO;
+import br.paulocalderan.projetocrud.integracao.dto.LivroDTO;
 import br.paulocalderan.projetocrud.service.LivroService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

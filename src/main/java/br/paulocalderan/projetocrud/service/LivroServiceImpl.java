@@ -7,7 +7,7 @@ import br.paulocalderan.projetocrud.exception.ApiException;
 import br.paulocalderan.projetocrud.repository.AutorRepository;
 import br.paulocalderan.projetocrud.repository.EditoraRepository;
 import br.paulocalderan.projetocrud.repository.LivroRepository;
-import br.paulocalderan.projetocrud.rest.controller.dto.LivroDTO;
+import br.paulocalderan.projetocrud.integracao.dto.LivroDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

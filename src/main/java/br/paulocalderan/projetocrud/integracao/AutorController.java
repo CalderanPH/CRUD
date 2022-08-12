@@ -1,17 +1,20 @@
-package br.paulocalderan.projetocrud.rest.controller;
+package br.paulocalderan.projetocrud.integracao;
 
 
 import br.paulocalderan.projetocrud.entity.Autor;
 import br.paulocalderan.projetocrud.exception.ApiException;
-import br.paulocalderan.projetocrud.rest.controller.dto.AutorDTO;
+import br.paulocalderan.projetocrud.integracao.dto.AutorDTO;
 import br.paulocalderan.projetocrud.service.AutorService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
@@ -24,6 +27,17 @@ public class AutorController {
 
     public AutorController(AutorService service) {
         this.service = service;
+    }
+
+    @GetMapping
+    public List<Autor> findAll(Autor filtro) {
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(
+                        ExampleMatcher.StringMatcher.CONTAINING);
+        Example example = Example.of(filtro, matcher);
+        return service.findAll();
     }
 
     @GetMapping("{id}")

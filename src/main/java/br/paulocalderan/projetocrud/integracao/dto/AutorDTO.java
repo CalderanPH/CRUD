@@ -1,5 +1,6 @@
-package br.paulocalderan.projetocrud.rest.controller.dto;
+package br.paulocalderan.projetocrud.integracao.dto;
 
+import br.paulocalderan.projetocrud.entity.Autor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,4 +14,7 @@ public class AutorDTO {
     @NotBlank(message = "Campo nome não pode estar vazio.")
     private String name;
 
+    public AutorDTO(Autor autor) {
+        this.name = autor.getName();
+    }
 }

@@ -29,7 +29,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ApiException.class)
-    @ResponseStatus(BAD_REQUEST)
+    @ResponseStatus(NOT_FOUND)
     public ApiErrors handleRegraDeNegocio(ApiException ex) {
         String message = ex.getMessage();
         return new ApiErrors(message);

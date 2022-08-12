@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.rest.controller;
+package br.paulocalderan.projetocrud.integracao;
 
 
 import br.paulocalderan.projetocrud.entity.Editora;
