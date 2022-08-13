@@ -1,10 +1,10 @@
-package br.paulocalderan.projetocrud.integracao;
+package br.paulocalderan.projetocrud.controller;
 
 
-import br.paulocalderan.projetocrud.entity.Livro;
+import br.paulocalderan.projetocrud.domain.dto.LivroDTO;
+import br.paulocalderan.projetocrud.domain.entity.Livro;
+import br.paulocalderan.projetocrud.domain.service.LivroService;
 import br.paulocalderan.projetocrud.exception.ApiException;
-import br.paulocalderan.projetocrud.integracao.dto.LivroDTO;
-import br.paulocalderan.projetocrud.service.LivroService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class LivroController {
         this.service = service;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Livro getById(@PathVariable Long id) {
         return service
                 .obterLivroCompleto(id)
@@ -41,14 +41,14 @@ public class LivroController {
     public ResponseEntity<Livro> save(@Valid @RequestBody LivroDTO dto) {
         Livro livroCriado = service.salvar(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("{id}")
+                .path("/{id}")
                 .buildAndExpand(livroCriado.getId())
                 .toUri();
         log.info("Criado novo autor com id: {}", livroCriado.getId());
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void update(@PathVariable Long id,
                        @RequestBody @Valid LivroDTO dto) {
@@ -57,7 +57,7 @@ public class LivroController {
     }
 
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);

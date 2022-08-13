@@ -1,0 +1,7 @@
+{
+  "autor": "{{autorId}}",
+  "editora": "{{editoraId}}",
+  "name": "{{name}}",
+  "genero": "{{genero}}",
+  "qtdPaginas": "{{qtdPaginas}}"
+}

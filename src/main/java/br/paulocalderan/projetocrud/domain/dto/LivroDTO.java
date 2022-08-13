@@ -1,5 +1,7 @@
-package br.paulocalderan.projetocrud.integracao.dto;
+package br.paulocalderan.projetocrud.domain.dto;
 
+import br.paulocalderan.projetocrud.domain.entity.Autor;
+import br.paulocalderan.projetocrud.domain.entity.Editora;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +14,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class LivroDTO {
     @NotNull(message = "Campo autor não pode estar vazio.")
-    private Integer autor;
+    private Autor autor;
 
     @NotNull(message = "Campo editora não pode estar vazio.")
-    private Integer editora;
+    private Editora editora;
 
     @NotBlank(message = "Campo nome não pode estar vazio.")
     private String name;

@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.entity;
+package br.paulocalderan.projetocrud.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,4 +21,11 @@ public class Editora {
     @NotEmpty(message = "Campo nome não pode estar vazio.")
     private String name;
 
+    public Editora(String name) {
+        this.name = name;
+    }
+
+    public Editora(Long id) {
+        this.id = id;
+    }
 }

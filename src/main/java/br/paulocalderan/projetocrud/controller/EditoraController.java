@@ -1,9 +1,9 @@
-package br.paulocalderan.projetocrud.integracao;
+package br.paulocalderan.projetocrud.controller;
 
 
-import br.paulocalderan.projetocrud.entity.Editora;
+import br.paulocalderan.projetocrud.domain.entity.Editora;
+import br.paulocalderan.projetocrud.domain.repository.EditoraRepository;
 import br.paulocalderan.projetocrud.exception.ApiException;
-import br.paulocalderan.projetocrud.repository.EditoraRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class EditoraController {
         this.editoraRepository = editoraRepository;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Editora findById(@PathVariable Long id) {
         return editoraRepository
                 .findById(id)
@@ -37,14 +37,14 @@ public class EditoraController {
     public ResponseEntity<Editora> save(@RequestBody @Valid Editora editora) {
         Editora editoraCriado = editoraRepository.save(editora);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("{id}")
+                .path("/{id}")
                 .buildAndExpand(editora.getId())
                 .toUri();
         log.info("Criado novo autor com id: {}", editoraCriado.getId());
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void update(@PathVariable Long id,
                        @RequestBody @Valid Editora editora) {
@@ -59,7 +59,7 @@ public class EditoraController {
         log.info("Editora autalizado com o id: {}", id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void delete(@PathVariable Long id) throws ApiException {
         editoraRepository

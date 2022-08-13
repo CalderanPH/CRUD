@@ -1,6 +1,6 @@
-package br.paulocalderan.projetocrud.repository;
+package br.paulocalderan.projetocrud.domain.repository;
 
-import br.paulocalderan.projetocrud.entity.Livro;
+import br.paulocalderan.projetocrud.domain.entity.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

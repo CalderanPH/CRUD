@@ -1,21 +1,21 @@
-package br.paulocalderan.projetocrud.service;
+package br.paulocalderan.projetocrud.domain.service;
 
-import br.paulocalderan.projetocrud.entity.Autor;
-import br.paulocalderan.projetocrud.entity.Editora;
-import br.paulocalderan.projetocrud.entity.Livro;
+import br.paulocalderan.projetocrud.domain.dto.LivroDTO;
+import br.paulocalderan.projetocrud.domain.entity.Autor;
+import br.paulocalderan.projetocrud.domain.entity.Editora;
+import br.paulocalderan.projetocrud.domain.entity.Livro;
+import br.paulocalderan.projetocrud.domain.repository.AutorRepository;
+import br.paulocalderan.projetocrud.domain.repository.EditoraRepository;
+import br.paulocalderan.projetocrud.domain.repository.LivroRepository;
 import br.paulocalderan.projetocrud.exception.ApiException;
-import br.paulocalderan.projetocrud.repository.AutorRepository;
-import br.paulocalderan.projetocrud.repository.EditoraRepository;
-import br.paulocalderan.projetocrud.repository.LivroRepository;
-import br.paulocalderan.projetocrud.integracao.dto.LivroDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Transactional
 public class LivroServiceImpl implements LivroService {
     private final AutorRepository autorRepository;
@@ -23,13 +23,14 @@ public class LivroServiceImpl implements LivroService {
     private final LivroRepository livroRepository;
 
     @Override
+    @Transactional
     public Livro salvar(LivroDTO dto) {
-        Integer idAutor = dto.getAutor();
-        Integer idEditora = dto.getEditora();
-        Autor autor = autorRepository.findById(Long.valueOf(idAutor))
-                .orElseThrow(() -> new ApiException("Código de autor inválido."));
-        Editora editora = editoraRepository.findById(Long.valueOf(idEditora))
-                .orElseThrow(() -> new ApiException("Código de editora inválido."));
+        Autor idAutor = dto.getAutor();
+        Editora idEditora = dto.getEditora();
+        Autor autor = autorRepository.save(idAutor);
+//                .orElseThrow(() -> new ApiException("Código de autor inválido."));
+        Editora editora = editoraRepository.save(idEditora);
+//                .orElseThrow(() -> new ApiException("Código de editora inválido."));
 
         Livro livro = new Livro();
         livro.setAutor(autor);
@@ -72,4 +73,6 @@ public class LivroServiceImpl implements LivroService {
     public Optional<Livro> obterLivroCompleto(Long id) {
         return livroRepository.findById(id);
     }
+
+
 }

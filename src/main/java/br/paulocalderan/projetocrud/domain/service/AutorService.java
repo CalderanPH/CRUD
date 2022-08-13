@@ -1,7 +1,7 @@
-package br.paulocalderan.projetocrud.service;
+package br.paulocalderan.projetocrud.domain.service;
 
-import br.paulocalderan.projetocrud.entity.Autor;
-import br.paulocalderan.projetocrud.integracao.dto.AutorDTO;
+import br.paulocalderan.projetocrud.domain.dto.AutorDTO;
+import br.paulocalderan.projetocrud.domain.entity.Autor;
 
 import java.util.List;
 import java.util.Optional;

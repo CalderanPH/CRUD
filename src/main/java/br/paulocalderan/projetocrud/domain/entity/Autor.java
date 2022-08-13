@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.entity;
+package br.paulocalderan.projetocrud.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -30,5 +30,13 @@ public class Autor {
     public Autor(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Autor(String name) {
+        this.name = name;
+    }
+
+    public Autor(Long id) {
+        this.id = id;
     }
 }

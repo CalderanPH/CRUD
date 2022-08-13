@@ -1,6 +1,6 @@
-package br.paulocalderan.projetocrud.integracao.dto;
+package br.paulocalderan.projetocrud.domain.dto;
 
-import br.paulocalderan.projetocrud.entity.Autor;
+import br.paulocalderan.projetocrud.domain.entity.Autor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

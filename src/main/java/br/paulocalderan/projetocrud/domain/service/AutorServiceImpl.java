@@ -1,10 +1,10 @@
-package br.paulocalderan.projetocrud.service;
+package br.paulocalderan.projetocrud.domain.service;
 
-import br.paulocalderan.projetocrud.entity.Autor;
+import br.paulocalderan.projetocrud.domain.dto.AutorDTO;
+import br.paulocalderan.projetocrud.domain.entity.Autor;
+import br.paulocalderan.projetocrud.domain.repository.AutorRepository;
 import br.paulocalderan.projetocrud.exception.ApiException;
-import br.paulocalderan.projetocrud.repository.AutorRepository;
-import br.paulocalderan.projetocrud.integracao.dto.AutorDTO;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class AutorServiceImpl implements AutorService {
-    private final AutorRepository autorRepository;
+
+    @Autowired
+    private AutorRepository autorRepository;
 
     @Override
     public Autor salvar(AutorDTO dto) {

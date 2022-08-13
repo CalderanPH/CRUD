@@ -1,7 +1,7 @@
-package br.paulocalderan.projetocrud.service;
+package br.paulocalderan.projetocrud.domain.service;
 
-import br.paulocalderan.projetocrud.entity.Livro;
-import br.paulocalderan.projetocrud.integracao.dto.LivroDTO;
+import br.paulocalderan.projetocrud.domain.dto.LivroDTO;
+import br.paulocalderan.projetocrud.domain.entity.Livro;
 
 import java.util.Optional;
 
@@ -13,4 +13,5 @@ public interface LivroService {
     void delete(Long id);
 
     Optional<Livro> obterLivroCompleto(Long id);
+
 }

@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.entity;
+package br.paulocalderan.projetocrud.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,4 +36,17 @@ public class Livro {
 
     private Integer qtdPaginas;
 
+    public Livro(String name, String genero, Integer qtdPaginas) {
+        this.name = name;
+        this.genero = genero;
+        this.qtdPaginas = qtdPaginas;
+    }
+
+    public Livro(Autor autor, Editora editora, String name, String genero, Integer qtdPaginas) {
+        this.autor = autor;
+        this.editora = editora;
+        this.name = name;
+        this.genero = genero;
+        this.qtdPaginas = qtdPaginas;
+    }
 }

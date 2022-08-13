@@ -1,10 +1,10 @@
-package br.paulocalderan.projetocrud.integracao;
+package br.paulocalderan.projetocrud.controller;
 
 
-import br.paulocalderan.projetocrud.entity.Autor;
+import br.paulocalderan.projetocrud.domain.dto.AutorDTO;
+import br.paulocalderan.projetocrud.domain.entity.Autor;
+import br.paulocalderan.projetocrud.domain.service.AutorService;
 import br.paulocalderan.projetocrud.exception.ApiException;
-import br.paulocalderan.projetocrud.integracao.dto.AutorDTO;
-import br.paulocalderan.projetocrud.service.AutorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -40,7 +40,7 @@ public class AutorController {
         return service.findAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Autor findById(@PathVariable Long id) {
         log.info("Autor autalizado com o id: {}", id);
         return service
@@ -52,14 +52,14 @@ public class AutorController {
     public ResponseEntity<Autor> save(@Valid @RequestBody AutorDTO dto) {
         Autor autorCriado = service.salvar(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("{id}")
+                .path("/{id}")
                 .buildAndExpand(autorCriado.getId())
                 .toUri();
         log.info("Criado novo autor com id: {}", autorCriado.getId());
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void update(@PathVariable Long id,
                        @RequestBody @Valid AutorDTO dto) {
@@ -67,7 +67,7 @@ public class AutorController {
         log.info("Autor autalizado com o id: {}", id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
