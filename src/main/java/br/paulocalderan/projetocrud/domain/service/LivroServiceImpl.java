@@ -1,12 +1,12 @@
 package br.paulocalderan.projetocrud.domain.service;
 
 import br.paulocalderan.projetocrud.domain.dto.LivroDTO;
-import br.paulocalderan.projetocrud.domain.entity.Autor;
-import br.paulocalderan.projetocrud.domain.entity.Editora;
 import br.paulocalderan.projetocrud.domain.entity.Livro;
 import br.paulocalderan.projetocrud.domain.repository.AutorRepository;
 import br.paulocalderan.projetocrud.domain.repository.EditoraRepository;
 import br.paulocalderan.projetocrud.domain.repository.LivroRepository;
+import br.paulocalderan.projetocrud.domain.entity.Autor;
+import br.paulocalderan.projetocrud.domain.entity.Editora;
 import br.paulocalderan.projetocrud.exception.ApiException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

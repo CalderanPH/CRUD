@@ -1,14 +1,27 @@
-version: '3.5'
+version: '3'
 services:
   db:
-    image: mysql
-    container_name: projetocrud
-    environment:
-      MYSQL_ROOT_PASSWORD: 3441
-    ports:
-      - "3306:3306"
+    image: "postgres:12"
     volumes:
-      - db:/var/lib/mysql/db2
+      - ./db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: crud
+
+  test:
+    image: "postgres:12"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data_test
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: crud_test
 
 volumes:
-  db:
+  db_data:
+
