@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 
 import static io.restassured.RestAssured.given;
 
-public class AutorDTOTest extends IntegrationTestConfig {
+public class AutorRequestTest extends IntegrationTestConfig {
     private String autorCriar;
 
     @BeforeEach

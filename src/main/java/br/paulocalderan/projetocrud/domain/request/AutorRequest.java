@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.domain.dto;
+package br.paulocalderan.projetocrud.domain.request;
 
 import br.paulocalderan.projetocrud.domain.entity.Autor;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AutorDTO {
+public class AutorRequest {
     @NotBlank(message = "Campo nome não pode estar vazio.")
     private String name;
 
-    public AutorDTO(Autor autor) {
+    public AutorRequest(Autor autor) {
         this.name = autor.getName();
     }
 }

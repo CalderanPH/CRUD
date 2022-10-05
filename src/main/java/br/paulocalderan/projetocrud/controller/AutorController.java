@@ -1,7 +1,7 @@
 package br.paulocalderan.projetocrud.controller;
 
 
-import br.paulocalderan.projetocrud.domain.dto.AutorDTO;
+import br.paulocalderan.projetocrud.domain.request.AutorRequest;
 import br.paulocalderan.projetocrud.domain.entity.Autor;
 import br.paulocalderan.projetocrud.domain.service.AutorService;
 import br.paulocalderan.projetocrud.exception.ApiException;
@@ -49,8 +49,8 @@ public class AutorController {
     }
 
     @PostMapping
-    public ResponseEntity<Autor> save(@Valid @RequestBody AutorDTO dto) {
-        Autor autorCriado = service.salvar(dto);
+    public ResponseEntity<Autor> save(@Valid @RequestBody AutorRequest request) {
+        Autor autorCriado = service.salvar(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(autorCriado.getId())
@@ -62,8 +62,8 @@ public class AutorController {
     @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void update(@PathVariable Long id,
-                       @RequestBody @Valid AutorDTO dto) {
-        service.update(id, dto);
+                       @RequestBody @Valid AutorRequest request) {
+        service.update(id, request);
         log.info("Autor autalizado com o id: {}", id);
     }
 

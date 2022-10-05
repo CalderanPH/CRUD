@@ -1,6 +1,6 @@
 package br.paulocalderan.projetocrud.domain.service;
 
-import br.paulocalderan.projetocrud.domain.dto.AutorDTO;
+import br.paulocalderan.projetocrud.domain.request.AutorRequest;
 import br.paulocalderan.projetocrud.domain.entity.Autor;
 import br.paulocalderan.projetocrud.domain.repository.AutorRepository;
 import br.paulocalderan.projetocrud.exception.ApiException;
@@ -19,19 +19,19 @@ public class AutorServiceImpl implements AutorService {
     private AutorRepository autorRepository;
 
     @Override
-    public Autor salvar(AutorDTO dto) {
+    public Autor salvar(AutorRequest request) {
         Autor autor = new Autor();
-        autor.setName(dto.getName());
+        autor.setName(request.getName());
         autorRepository.save(autor);
         return autor;
     }
 
     @Override
-    public void update(Long id, AutorDTO autorDTO) {
+    public void update(Long id, AutorRequest request) {
         autorRepository
                 .findById(id)
                 .map(autor -> {
-                    autor.setName(autorDTO.getName());
+                    autor.setName(request.getName());
                     return autorRepository.save(autor);
                 }).orElseThrow(() -> new ApiException(
                         "Autor não encontrado."));

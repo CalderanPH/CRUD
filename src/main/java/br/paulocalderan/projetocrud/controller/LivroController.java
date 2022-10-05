@@ -1,7 +1,7 @@
 package br.paulocalderan.projetocrud.controller;
 
 
-import br.paulocalderan.projetocrud.domain.dto.LivroDTO;
+import br.paulocalderan.projetocrud.domain.request.LivroRequest;
 import br.paulocalderan.projetocrud.domain.entity.Livro;
 import br.paulocalderan.projetocrud.domain.service.LivroService;
 import br.paulocalderan.projetocrud.exception.ApiException;
@@ -38,8 +38,8 @@ public class LivroController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public ResponseEntity<Livro> save(@Valid @RequestBody LivroDTO dto) {
-        Livro livroCriado = service.salvar(dto);
+    public ResponseEntity<Livro> save(@Valid @RequestBody LivroRequest request) {
+        Livro livroCriado = service.salvar(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(livroCriado.getId())
@@ -51,8 +51,8 @@ public class LivroController {
     @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void update(@PathVariable Long id,
-                       @RequestBody @Valid LivroDTO dto) {
-        service.update(id, dto);
+                       @RequestBody @Valid LivroRequest request) {
+        service.update(id, request);
         log.info("Livro alterado com o id: {}", id);
     }
 

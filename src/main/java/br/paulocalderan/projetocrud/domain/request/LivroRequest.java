@@ -1,4 +1,4 @@
-package br.paulocalderan.projetocrud.domain.dto;
+package br.paulocalderan.projetocrud.domain.request;
 
 import br.paulocalderan.projetocrud.domain.entity.Autor;
 import br.paulocalderan.projetocrud.domain.entity.Editora;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LivroDTO {
+public class LivroRequest {
     @NotNull(message = "Campo autor não pode estar vazio.")
     private Autor autor;
 

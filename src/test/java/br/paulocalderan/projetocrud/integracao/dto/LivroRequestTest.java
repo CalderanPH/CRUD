@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
-public class LivroDTOTest extends IntegrationTestConfig {
+public class LivroRequestTest extends IntegrationTestConfig {
     private String livroCriar;
 
     @BeforeEach

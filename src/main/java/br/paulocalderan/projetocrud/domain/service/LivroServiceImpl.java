@@ -1,6 +1,6 @@
 package br.paulocalderan.projetocrud.domain.service;
 
-import br.paulocalderan.projetocrud.domain.dto.LivroDTO;
+import br.paulocalderan.projetocrud.domain.request.LivroRequest;
 import br.paulocalderan.projetocrud.domain.entity.Livro;
 import br.paulocalderan.projetocrud.domain.repository.AutorRepository;
 import br.paulocalderan.projetocrud.domain.repository.EditoraRepository;
@@ -24,9 +24,9 @@ public class LivroServiceImpl implements LivroService {
 
     @Override
     @Transactional
-    public Livro salvar(LivroDTO dto) {
-        Autor idAutor = dto.getAutor();
-        Editora idEditora = dto.getEditora();
+    public Livro salvar(LivroRequest request) {
+        Autor idAutor = request.getAutor();
+        Editora idEditora = request.getEditora();
         Autor autor = autorRepository.save(idAutor);
 //                .orElseThrow(() -> new ApiException("Código de autor inválido."));
         Editora editora = editoraRepository.save(idEditora);
@@ -35,9 +35,9 @@ public class LivroServiceImpl implements LivroService {
         Livro livro = new Livro();
         livro.setAutor(autor);
         livro.setEditora(editora);
-        livro.setName(dto.getName());
-        livro.setGenero(dto.getGenero());
-        livro.setQtdPaginas(dto.getQtdPaginas());
+        livro.setName(request.getName());
+        livro.setGenero(request.getGenero());
+        livro.setQtdPaginas(request.getQtdPaginas());
 
         livroRepository.save(livro);
         return livro;
@@ -45,13 +45,13 @@ public class LivroServiceImpl implements LivroService {
 
 
     @Override
-    public void update(Long id, LivroDTO livroDTO) {
+    public void update(Long id, LivroRequest livroRequest) {
         livroRepository
                 .findById(id)
                 .map(livro -> {
-                    livro.setName(livroDTO.getName());
-                    livro.setGenero(livroDTO.getGenero());
-                    livro.setQtdPaginas(livroDTO.getQtdPaginas());
+                    livro.setName(livroRequest.getName());
+                    livro.setGenero(livroRequest.getGenero());
+                    livro.setQtdPaginas(livroRequest.getQtdPaginas());
                     return livroRepository.save(livro);
                 }).orElseThrow(() -> new ApiException(
                         "Livro não encontrado."));
