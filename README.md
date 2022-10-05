@@ -1,2 +1,2 @@
-# projetoCrud
-piloto
+# Projeto Crud
+Projeto em desenvolvimento.
