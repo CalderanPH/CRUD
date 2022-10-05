@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: crud
 
-  test:
+  db_test:
     image: "postgres:12"
     volumes:
       - ./db_data:/var/lib/postgresql/data_test
@@ -24,4 +24,3 @@ services:
 
 volumes:
   db_data:
-

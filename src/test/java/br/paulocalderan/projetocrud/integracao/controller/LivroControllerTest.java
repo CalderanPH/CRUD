@@ -1,12 +1,12 @@
 package br.paulocalderan.projetocrud.integracao.controller;
 
-import br.paulocalderan.projetocrud.integracao.IntegrationTestConfig;
 import br.paulocalderan.projetocrud.domain.entity.Autor;
 import br.paulocalderan.projetocrud.domain.entity.Editora;
 import br.paulocalderan.projetocrud.domain.entity.Livro;
 import br.paulocalderan.projetocrud.domain.repository.AutorRepository;
 import br.paulocalderan.projetocrud.domain.repository.EditoraRepository;
 import br.paulocalderan.projetocrud.domain.repository.LivroRepository;
+import br.paulocalderan.projetocrud.integracao.IntegrationTestConfig;
 import br.paulocalderan.projetocrud.util.ResourceUtils;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -41,6 +41,7 @@ public class LivroControllerTest extends IntegrationTestConfig {
         livrojson = ResourceUtils.getContentFromResource("/json/criarLivro.json");
         prepararDados();
     }
+
 
     private void prepararDados() {
 
