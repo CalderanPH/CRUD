@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import static io.restassured.RestAssured.given;
 
 public class AutorRequestTest extends IntegrationTestConfig {
+
     private String autorCriar;
 
     @BeforeEach
@@ -19,7 +20,6 @@ public class AutorRequestTest extends IntegrationTestConfig {
         RestAssured.basePath = "/api/autores";
         autorCriar = ResourceUtils.getContentFromResource("/json/criarAutor.json");
     }
-
 
     @Test
     public void criarErro_NomeNulo_Retornando400() {

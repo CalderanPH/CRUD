@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 public class LivroRequestTest extends IntegrationTestConfig {
+
     private String livroCriar;
 
     @BeforeEach
@@ -20,7 +21,6 @@ public class LivroRequestTest extends IntegrationTestConfig {
         RestAssured.basePath = "/api/livros";
         livroCriar = ResourceUtils.getContentFromResource("/json/criarLivro.json");
     }
-
 
     @Test
     public void criarErro_NomeNulo_Retornando400() {

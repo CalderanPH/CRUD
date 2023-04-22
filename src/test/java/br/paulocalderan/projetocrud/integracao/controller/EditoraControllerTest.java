@@ -17,6 +17,7 @@ import static org.hamcrest.Matchers.is;
 
 
 public class EditoraControllerTest extends IntegrationTestConfig {
+
     @Autowired
     private EditoraRepository editoraRepository;
 
@@ -93,7 +94,6 @@ public class EditoraControllerTest extends IntegrationTestConfig {
                 .then()
                 .statusCode(HttpStatus.NO_CONTENT.value());
     }
-
 
     @Test
     public void findById_Status200() {

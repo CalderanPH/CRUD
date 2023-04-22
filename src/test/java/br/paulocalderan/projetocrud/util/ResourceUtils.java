@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResourceUtils {
+
     public static String getContentFromResource(String resourceName) {
         try {
             InputStream stream = ResourceUtils.class.getResourceAsStream(resourceName);
@@ -18,4 +19,5 @@ public class ResourceUtils {
             throw new RuntimeException(e);
         }
     }
+
 }

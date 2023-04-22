@@ -24,8 +24,10 @@ public class LivroControllerTest extends IntegrationTestConfig {
 
     @Autowired
     private LivroRepository livroRepository;
+
     @Autowired
     private AutorRepository autorRepository;
+
     @Autowired
     private EditoraRepository editoraRepository;
 
@@ -42,9 +44,7 @@ public class LivroControllerTest extends IntegrationTestConfig {
         prepararDados();
     }
 
-
     private void prepararDados() {
-
         Autor autor = new Autor("Paulo");
         this.autor = autorRepository.save(autor);
 
@@ -124,7 +124,6 @@ public class LivroControllerTest extends IntegrationTestConfig {
                 .then()
                 .statusCode(HttpStatus.NO_CONTENT.value());
     }
-
 
     @Test
     public void findById_Status200() {

@@ -13,7 +13,6 @@ import java.util.List;
 @Component
 public class DataBaseCleaner {
 
-
     private static final String DATABASE_SCHEMA = "db_test";
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -89,4 +88,5 @@ public class DataBaseCleaner {
         logger.debug("Adding SQL: {}", sql);
         return sql;
     }
+
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import static io.restassured.RestAssured.given;
 
 public class EditoraDTOTest extends IntegrationTestConfig {
+
     private String editoraCriar;
 
     @BeforeEach
@@ -19,7 +20,6 @@ public class EditoraDTOTest extends IntegrationTestConfig {
         RestAssured.basePath = "/api/editora";
         editoraCriar = ResourceUtils.getContentFromResource("/json/criarEditora.json");
     }
-
 
     @Test
     public void criarErro_NomeNulo_Retornando400() {
