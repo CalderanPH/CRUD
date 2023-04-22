@@ -1,12 +1,12 @@
 package br.paulocalderan.projetocrud.domain.service;
 
-import br.paulocalderan.projetocrud.domain.request.LivroRequest;
+import br.paulocalderan.projetocrud.domain.entity.Autor;
+import br.paulocalderan.projetocrud.domain.entity.Editora;
 import br.paulocalderan.projetocrud.domain.entity.Livro;
 import br.paulocalderan.projetocrud.domain.repository.AutorRepository;
 import br.paulocalderan.projetocrud.domain.repository.EditoraRepository;
 import br.paulocalderan.projetocrud.domain.repository.LivroRepository;
-import br.paulocalderan.projetocrud.domain.entity.Autor;
-import br.paulocalderan.projetocrud.domain.entity.Editora;
+import br.paulocalderan.projetocrud.domain.request.LivroRequest;
 import br.paulocalderan.projetocrud.exception.ApiException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,7 @@ public class LivroServiceImpl implements LivroService {
         Autor idAutor = request.getAutor();
         Editora idEditora = request.getEditora();
         Autor autor = autorRepository.save(idAutor);
-//                .orElseThrow(() -> new ApiException("Código de autor inválido."));
         Editora editora = editoraRepository.save(idEditora);
-//                .orElseThrow(() -> new ApiException("Código de editora inválido."));
 
         Livro livro = new Livro();
         livro.setAutor(autor);
@@ -73,6 +71,5 @@ public class LivroServiceImpl implements LivroService {
     public Optional<Livro> obterLivroCompleto(Long id) {
         return livroRepository.findById(id);
     }
-
 
 }

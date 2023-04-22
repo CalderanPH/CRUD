@@ -6,6 +6,7 @@ import br.paulocalderan.projetocrud.domain.entity.Livro;
 import java.util.Optional;
 
 public interface LivroService {
+
     Livro salvar(LivroRequest dto);
 
     void update(Long id, LivroRequest livroRequest);

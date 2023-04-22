@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AutorService {
+
     Autor salvar(AutorRequest dto);
 
     void update(Long id, AutorRequest autorRequest);
@@ -16,4 +17,5 @@ public interface AutorService {
     Optional<Autor> obterAutor(Long id);
 
     List<Autor> findAll();
+
 }

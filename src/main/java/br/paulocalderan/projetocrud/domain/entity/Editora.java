@@ -28,4 +28,5 @@ public class Editora {
     public Editora(Long id) {
         this.id = id;
     }
+
 }

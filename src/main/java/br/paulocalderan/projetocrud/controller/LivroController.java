@@ -22,7 +22,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 @RequestMapping("/api/livros")
 public class LivroController {
 
-    private LivroService service;
+    private final LivroService service;
 
     public LivroController(LivroService service) {
         this.service = service;

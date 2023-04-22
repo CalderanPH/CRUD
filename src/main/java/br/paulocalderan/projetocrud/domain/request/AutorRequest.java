@@ -11,10 +11,12 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AutorRequest {
+
     @NotBlank(message = "Campo nome não pode estar vazio.")
     private String name;
 
     public AutorRequest(Autor autor) {
         this.name = autor.getName();
     }
+
 }

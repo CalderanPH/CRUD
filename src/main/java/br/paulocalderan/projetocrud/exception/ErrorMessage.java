@@ -12,6 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorMessage {
+
     private Date currentDate;
     private String message;
+
 }

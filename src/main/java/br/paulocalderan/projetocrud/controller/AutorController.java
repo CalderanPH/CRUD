@@ -1,13 +1,10 @@
 package br.paulocalderan.projetocrud.controller;
 
-
-import br.paulocalderan.projetocrud.domain.request.AutorRequest;
 import br.paulocalderan.projetocrud.domain.entity.Autor;
+import br.paulocalderan.projetocrud.domain.request.AutorRequest;
 import br.paulocalderan.projetocrud.domain.service.AutorService;
 import br.paulocalderan.projetocrud.exception.ApiException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,25 +15,18 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
-
 @RestController
 @Slf4j
 @RequestMapping("/api/autores")
 public class AutorController {
-    private AutorService service;
+    private final AutorService service;
 
     public AutorController(AutorService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Autor> findAll(Autor filtro) {
-        ExampleMatcher matcher = ExampleMatcher
-                .matching()
-                .withIgnoreCase()
-                .withStringMatcher(
-                        ExampleMatcher.StringMatcher.CONTAINING);
-        Example example = Example.of(filtro, matcher);
+    public List<Autor> findAll() {
         return service.findAll();
     }
 
@@ -73,4 +63,5 @@ public class AutorController {
         service.delete(id);
         log.info("Autor deletado com o id: {}", id);
     }
+
 }

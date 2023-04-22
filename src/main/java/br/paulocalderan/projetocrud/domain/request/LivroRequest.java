@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LivroRequest {
+
     @NotNull(message = "Campo autor não pode estar vazio.")
     private Autor autor;
 

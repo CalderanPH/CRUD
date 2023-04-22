@@ -1,6 +1,5 @@
 package br.paulocalderan.projetocrud.controller;
 
-
 import br.paulocalderan.projetocrud.domain.entity.Editora;
 import br.paulocalderan.projetocrud.domain.repository.EditoraRepository;
 import br.paulocalderan.projetocrud.exception.ApiException;
@@ -14,12 +13,11 @@ import java.net.URI;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
-
 @RestController
 @Slf4j
 @RequestMapping("/api/editora")
 public class EditoraController {
-    private EditoraRepository editoraRepository;
+    private final EditoraRepository editoraRepository;
 
     public EditoraController(EditoraRepository editoraRepository) {
         this.editoraRepository = editoraRepository;
@@ -69,7 +67,7 @@ public class EditoraController {
                     return editoraExist;
                 }).orElseThrow(() ->
                         new ApiException("Editora não encontrada."));
-        ;
         log.info("Editora deletado com o id: {}", id);
     }
+
 }
